@@ -3,8 +3,12 @@ package com.kapture.ticket.controller;
 import com.kapture.ticket.entity.Ticket;
 import com.kapture.ticket.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @RestController
@@ -14,8 +18,9 @@ public class TicketController {
     private TicketService ticketService;
 
     @GetMapping("/getTickets")
-    public List<Ticket> getAllTickets() {
-        return ticketService.getAllTickets();
+    public Page<Ticket> getAllTickets(@RequestParam(defaultValue = "0") int page,
+                                      @RequestParam(defaultValue = "10") int size) {
+        return ticketService.getAllTickets(page, size);
     }
 
     @GetMapping("/get/{id}")

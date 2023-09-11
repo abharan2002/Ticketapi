@@ -3,9 +3,12 @@ package com.kapture.ticket.service;
 import com.kapture.ticket.entity.Ticket;
 import com.kapture.ticket.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +17,9 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    public List<Ticket> getAllTickets() {
-        return ticketRepository.findAll();
+    public Page<Ticket> getAllTickets(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ticketRepository.findAll(pageable);
     }
 
     public Ticket getTicketById(Long id) {
