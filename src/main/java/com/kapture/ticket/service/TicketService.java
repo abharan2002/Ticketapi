@@ -1,6 +1,8 @@
 package com.kapture.ticket.service;
 
 import com.kapture.ticket.entity.Ticket;
+import com.kapture.ticket.exceptions.BadRequestException;
+import com.kapture.ticket.exceptions.TicketNotFoundException;
 import com.kapture.ticket.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -23,19 +25,36 @@ public class TicketService {
     }
 
     public Ticket getTicketById(Long id) {
-        Optional<Ticket> ticketOptional = ticketRepository.findById(id);
-        return ticketOptional.orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
+        Ticket ticket = ticketRepository.findById(id).orElse(null);
+        if (ticket == null) {
+            throw new TicketNotFoundException("Ticket not found with ID: " + id);
+        }
+        return ticket;
     }
 
-    public Ticket createOrUpdateTicket(Ticket ticket) {
+    public Ticket createTicket(Ticket ticket) {
+        if (ticket == null) {
+            throw new BadRequestException("Invalid ticket data");
+        }
         return ticketRepository.save(ticket);
     }
 
+    public Ticket updateTicket(Long id, Ticket updatedTicket) {
+        Ticket existingTicket = ticketRepository.findById(id)
+                .orElseThrow(() -> new TicketNotFoundException("Ticket not found with ID: " + id));
+
+        existingTicket.setClientId(updatedTicket.getClientId());
+        existingTicket.setTicketCode(updatedTicket.getTicketCode());
+        existingTicket.setTitle(updatedTicket.getTitle());
+        existingTicket.setStatus(updatedTicket.getStatus());
+
+        return ticketRepository.save(existingTicket);
+    }
+
     public void deleteTicket(Long id) {
-        if (!ticketRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found");
-        }
-        ticketRepository.deleteById(id);
+        Ticket existingTicket = ticketRepository.findById(id)
+                .orElseThrow(() -> new TicketNotFoundException("Ticket not found with ID: " + id));
+
+        ticketRepository.delete(existingTicket);
     }
 }

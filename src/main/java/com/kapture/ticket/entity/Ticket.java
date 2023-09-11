@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -24,6 +25,7 @@ public class Ticket {
 
     @Column(nullable = false)
     private String title;
+
 
     @Column(nullable = false)
     private String status;
