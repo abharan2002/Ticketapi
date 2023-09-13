@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Data
@@ -15,19 +14,22 @@ import java.util.Date;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id")
 
-    @Column(nullable = false)
-    private Long clientId;
+    // change into int
+    private int id;
 
-    @Column(nullable = false, unique = true)
-    private Long ticketCode;
+    @Column(name = "client_id", nullable = false)
+    private int clientId;
 
-    @Column(nullable = false)
+    @Column(name = "ticket_code", nullable = false, unique = true)
+    private int ticketCode;
+
+    @Column(name = "title", nullable = false)
     private String title;
 
 
-    @Column(nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
 }
 

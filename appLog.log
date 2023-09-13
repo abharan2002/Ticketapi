@@ -1,0 +1,216 @@
+2023-09-12 16:55:54.276  INFO 23540 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 23540 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 16:55:54.279 DEBUG 23540 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 16:55:54.280  INFO 23540 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 16:55:54.843  INFO 23540 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 16:55:54.891  INFO 23540 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 1 JPA repository interfaces.
+2023-09-12 16:55:55.276  INFO 23540 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 16:55:55.283  INFO 23540 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-12 16:55:55.283  INFO 23540 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-12 16:55:55.387  INFO 23540 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-12 16:55:55.387  INFO 23540 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1054 ms
+2023-09-12 16:55:55.473  WARN 23540 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketController' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\controller\TicketController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketService' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\service\TicketService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ticketRepositoryJPA' defined in com.kapture.ticket.repository.TicketRepositoryJPA defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#169268a7' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#169268a7': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' available
+2023-09-12 16:55:55.476  INFO 23540 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-12 16:55:55.508  INFO 23540 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-09-12 16:55:55.537 ERROR 23540 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.kapture.ticket.service.TicketService required a bean named 'entityManagerFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean named 'entityManagerFactory' in your configuration.
+
+2023-09-12 17:00:59.574  INFO 4200 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 4200 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 17:00:59.579 DEBUG 4200 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 17:00:59.580  INFO 4200 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 17:01:00.137  INFO 4200 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 17:01:00.184  INFO 4200 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 1 JPA repository interfaces.
+2023-09-12 17:01:00.552  INFO 4200 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 17:01:06.851  INFO 20456 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 20456 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 17:01:06.853 DEBUG 20456 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 17:01:06.854  INFO 20456 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 17:01:07.335  INFO 20456 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 17:01:07.383  INFO 20456 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 1 JPA repository interfaces.
+2023-09-12 17:01:07.772  INFO 20456 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 17:01:07.779  INFO 20456 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-12 17:01:07.780  INFO 20456 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-12 17:01:07.885  INFO 20456 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-12 17:01:07.885  INFO 20456 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 993 ms
+2023-09-12 17:01:07.970  WARN 20456 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketController' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\controller\TicketController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketService' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\service\TicketService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ticketRepositoryJPA' defined in com.kapture.ticket.repository.TicketRepositoryJPA defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#4b0b64cc' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#4b0b64cc': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' available
+2023-09-12 17:01:07.973  INFO 20456 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-12 17:01:07.988  INFO 20456 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-09-12 17:01:08.031 ERROR 20456 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.kapture.ticket.service.TicketService required a bean named 'entityManagerFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean named 'entityManagerFactory' in your configuration.
+
+2023-09-12 17:03:04.641  INFO 5588 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 5588 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 17:03:04.644 DEBUG 5588 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 17:03:04.645  INFO 5588 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 17:03:05.181  INFO 5588 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 17:03:05.235  INFO 5588 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 1 JPA repository interfaces.
+2023-09-12 17:03:05.616  INFO 5588 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 17:03:05.622  INFO 5588 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-12 17:03:05.623  INFO 5588 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-12 17:03:05.737  INFO 5588 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-12 17:03:05.738  INFO 5588 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1046 ms
+2023-09-12 17:03:05.833  WARN 5588 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketController' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\controller\TicketController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketService' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\service\TicketService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ticketRepositoryJPA' defined in com.kapture.ticket.repository.TicketRepositoryJPA defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#6a87026' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#6a87026': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' available
+2023-09-12 17:03:05.838  INFO 5588 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-12 17:03:05.855  INFO 5588 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-09-12 17:03:05.875 ERROR 5588 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.kapture.ticket.service.TicketService required a bean named 'entityManagerFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean named 'entityManagerFactory' in your configuration.
+
+2023-09-12 17:04:51.637  INFO 19744 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 19744 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 17:04:51.640 DEBUG 19744 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 17:04:51.640  INFO 19744 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 17:04:52.175  INFO 19744 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 17:04:52.219  INFO 19744 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 1 JPA repository interfaces.
+2023-09-12 17:04:52.604  INFO 19744 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 17:04:52.610  INFO 19744 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-12 17:04:52.610  INFO 19744 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-12 17:04:52.707  INFO 19744 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-12 17:04:52.707  INFO 19744 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1018 ms
+2023-09-12 17:04:52.793  WARN 19744 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketController' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\controller\TicketController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketService' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\service\TicketService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ticketRepositoryJPA' defined in com.kapture.ticket.repository.TicketRepositoryJPA defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#4eb166a1' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#4eb166a1': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' available
+2023-09-12 17:04:52.795  INFO 19744 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-12 17:04:52.805  INFO 19744 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-09-12 17:04:52.830 ERROR 19744 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.kapture.ticket.service.TicketService required a bean named 'entityManagerFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean named 'entityManagerFactory' in your configuration.
+
+2023-09-12 17:05:26.688  INFO 18728 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 18728 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 17:05:26.691 DEBUG 18728 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 17:05:26.691  INFO 18728 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 17:05:27.084  INFO 18728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 17:05:27.126  INFO 18728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 1 JPA repository interfaces.
+2023-09-12 17:05:27.557  INFO 18728 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 17:05:27.562  INFO 18728 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-12 17:05:27.562  INFO 18728 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-12 17:05:27.655  INFO 18728 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-12 17:05:27.655  INFO 18728 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 916 ms
+2023-09-12 17:05:27.717  WARN 18728 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketController' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\controller\TicketController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketService' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\service\TicketService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ticketRepositoryJPA' defined in com.kapture.ticket.repository.TicketRepositoryJPA defined in @EnableJpaRepositories declared on TicketApplication: Cannot create inner bean '(inner bean)#6296474f' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#6296474f': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' available
+2023-09-12 17:05:27.719  INFO 18728 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-12 17:05:27.730  INFO 18728 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-09-12 17:05:27.756 ERROR 18728 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.kapture.ticket.service.TicketService required a bean named 'entityManagerFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean named 'entityManagerFactory' in your configuration.
+
+2023-09-12 17:07:02.005  INFO 10944 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 10944 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 17:07:02.008 DEBUG 10944 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 17:07:02.009  INFO 10944 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 17:07:02.563  INFO 10944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 17:07:02.613  INFO 10944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 1 JPA repository interfaces.
+2023-09-12 17:07:02.992  INFO 10944 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 17:07:02.998  INFO 10944 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-12 17:07:02.998  INFO 10944 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-12 17:07:03.110  INFO 10944 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-12 17:07:03.110  INFO 10944 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1055 ms
+2023-09-12 17:07:03.196  WARN 10944 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketController' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\controller\TicketController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketService' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\service\TicketService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ticketRepositoryJPA' defined in com.kapture.ticket.repository.TicketRepositoryJPA defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#17092fff' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#17092fff': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' available
+2023-09-12 17:07:03.199  INFO 10944 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-12 17:07:03.219  INFO 10944 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-09-12 17:07:03.247 ERROR 10944 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.kapture.ticket.service.TicketService required a bean named 'entityManagerFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean named 'entityManagerFactory' in your configuration.
+
+2023-09-12 17:09:12.995  INFO 23536 --- [main] com.kapture.ticket.TicketApplication     : Starting TicketApplication using Java 1.8.0_202 on DESKTOP-CV0AJN6 with PID 23536 (C:\Project\Ticket\target\classes started by Abharan Gupta in C:\Project\Ticket)
+2023-09-12 17:09:12.998 DEBUG 23536 --- [main] com.kapture.ticket.TicketApplication     : Running with Spring Boot v2.7.15, Spring v5.3.29
+2023-09-12 17:09:12.999  INFO 23536 --- [main] com.kapture.ticket.TicketApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-09-12 17:09:13.554  INFO 23536 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-12 17:09:13.606  INFO 23536 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 1 JPA repository interfaces.
+2023-09-12 17:09:13.999  INFO 23536 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2023-09-12 17:09:14.006  INFO 23536 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-12 17:09:14.006  INFO 23536 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-12 17:09:14.120  INFO 23536 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-12 17:09:14.120  INFO 23536 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1069 ms
+2023-09-12 17:09:14.204  WARN 23536 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketController' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\controller\TicketController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ticketService' defined in file [C:\Project\Ticket\target\classes\com\kapture\ticket\service\TicketService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'ticketRepositoryJPA' defined in com.kapture.ticket.repository.TicketRepositoryJPA defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#2aa7399c' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#2aa7399c': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'entityManagerFactory' available
+2023-09-12 17:09:14.207  INFO 23536 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-12 17:09:14.229  INFO 23536 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-09-12 17:09:14.251 ERROR 23536 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.kapture.ticket.service.TicketService required a bean named 'entityManagerFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean named 'entityManagerFactory' in your configuration.
+

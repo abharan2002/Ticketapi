@@ -1,31 +1,30 @@
 package com.kapture.ticket.controller;
 
+import com.kapture.ticket.dto.SearchTicketReqDto;
 import com.kapture.ticket.entity.Ticket;
-import com.kapture.ticket.exceptions.ApiResponse;
 import com.kapture.ticket.exceptions.BadRequestException;
 import com.kapture.ticket.exceptions.TicketNotFoundException;
 import com.kapture.ticket.service.TicketService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping("/api/v1/tickets")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TicketController {
-    @Autowired
-    private TicketService ticketService;
+    private final TicketService ticketService;
 
-    @GetMapping("/getTickets")
+    @GetMapping("/get-all-tickets")
     public ResponseEntity<?> getAllTickets(@RequestParam(defaultValue = "0") int page,
-                                           @RequestParam(defaultValue = "10") int size) {
+                                           @RequestParam(defaultValue = "10") int size,
+                                           @RequestParam(required = false) int clientId) {
         try {
-            Page<Ticket> tickets = ticketService.getAllTickets(page, size);
+            List<Ticket> tickets = ticketService.getAllTickets(clientId, page, size);
             return ResponseEntity.ok(tickets);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -33,17 +32,18 @@ public class TicketController {
         }
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<?> getTicketById(@PathVariable Long id) {
+    @GetMapping("/get-ticket-by-id/{id}")
+    public ResponseEntity<?> getTicketsById(@PathVariable int id) {
         try {
-            Ticket ticket = ticketService.getTicketById(id);
-            return ResponseEntity.ok(ticket);
+            List<Ticket> tickets = ticketService.findTicketById(id);
+            return ResponseEntity.ok(tickets);
         } catch (TicketNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @PostMapping("/create")
+
+    @PostMapping("/create-ticket/")
     public ResponseEntity<?> createTicket(@RequestBody Ticket ticket) {
         try {
             Ticket createdTicket = ticketService.createTicket(ticket);
@@ -52,8 +52,9 @@ public class TicketController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable Long id, @RequestBody Ticket updatedTicket) {
+
+    @PutMapping("/update-ticket/{id}")
+    public ResponseEntity<?> updateTicket(@PathVariable int id, @RequestBody Ticket updatedTicket) {
         try {
             Ticket updated = ticketService.updateTicket(id, updatedTicket);
             return ResponseEntity.ok(updated);
@@ -64,17 +65,18 @@ public class TicketController {
                     .body("An unexpected error occurred");
         }
     }
-    @DeleteMapping("/delete/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<?> deleteTicket(@PathVariable Long id) {
-        try {
-            ticketService.deleteTicket(id);
-            return ResponseEntity.noContent().build();
-        } catch (TicketNotFoundException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An unexpected error occurred");
-        }
+
+    @GetMapping("/search")
+    public List<Ticket> searchTicketsByCriteria(
+            @RequestParam(required = false) Integer clientId,
+            @RequestParam(required = false) Integer ticketCode,
+            @RequestParam(required = false) String status
+    ) {
+        SearchTicketReqDto searchCriteria = new SearchTicketReqDto();
+        searchCriteria.setClientId(clientId);
+        searchCriteria.setTicketCode(ticketCode);
+        searchCriteria.setStatus(status);
+
+        return ticketService.searchTicketsByCriteria(searchCriteria);
     }
 }
