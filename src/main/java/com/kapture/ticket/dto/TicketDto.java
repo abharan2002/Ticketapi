@@ -7,5 +7,6 @@ public class TicketDto {
     private Integer id;
     private Integer clientId;
     private Integer ticketCode;
-    private String status = "Pending";
+    private String title;
+    private String status;
 }

@@ -1,5 +1,6 @@
 package com.kapture.ticket.util;
 
+import com.kapture.ticket.dto.TicketDto;
 import com.kapture.ticket.entity.Ticket;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,14 +40,14 @@ public class QueryUtil {
         return list;
     }
 
-    public Ticket executeSaveTicketQuery(Ticket ticket) {
+    public TicketDto executeSaveTicketQuery(TicketDto ticketDto) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            int clientId = ticket.getClientId();
-            int ticketCode = ticket.getTicketCode();
-            String title = ticket.getTitle();
-            String status = ticket.getStatus();
+            int clientId = ticketDto.getClientId();
+            int ticketCode = ticketDto.getTicketCode();
+            String title = ticketDto.getTitle();
+            String status = ticketDto.getStatus();
 
             String queryString = "INSERT INTO tickets (client_id, ticket_code, title, status) " +
                     "VALUES (:clientId, :ticketCode, :title, :status)";
@@ -67,7 +68,7 @@ public class QueryUtil {
             session.getTransaction().commit();
 
             if (rowsAffected > 0) {
-                return ticket;
+                return ticketDto;
             } else {
                 return null; // Return null if the insert didn't affect any rows
             }

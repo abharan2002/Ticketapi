@@ -1,6 +1,7 @@
 package com.kapture.ticket.repository;
 
 import com.kapture.ticket.dto.SearchTicketReqDto;
+import com.kapture.ticket.dto.TicketDto;
 import com.kapture.ticket.entity.Ticket;
 import com.kapture.ticket.util.QueryUtil;
 import com.kapture.ticket.configuration.DataSourceConfig;
@@ -51,8 +52,8 @@ public class TicketRepositoryImpl implements TicketRepository {
         return queryUtil.runQueryHelper(query, parametersToSet, Ticket.class, null, null);
     }
 
-    public Ticket createTicket(Ticket ticket) {
-        return queryUtil.executeSaveTicketQuery(ticket);
+    public TicketDto createTicket(TicketDto ticketDto) {
+        return queryUtil.executeSaveTicketQuery(ticketDto);
     }
 
     public Ticket updateTicket(Ticket ticket) {
@@ -74,7 +75,7 @@ public class TicketRepositoryImpl implements TicketRepository {
             queryString += " AND status = :status";
         }
 
-        org.hibernate.query.NativeQuery<Ticket> query = session.createSQLQuery(queryString)
+        NativeQuery<Ticket> query = session.createSQLQuery(queryString)
                 .addEntity(Ticket.class);
 
         if (clientId != null) {

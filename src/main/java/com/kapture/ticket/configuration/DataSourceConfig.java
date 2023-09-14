@@ -65,7 +65,6 @@ public class DataSourceConfig {
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", HIBERNATE_DIALECT);
-        // Add any other Hibernate properties as needed
         return properties;
     }
 }
