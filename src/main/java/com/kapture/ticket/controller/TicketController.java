@@ -1,14 +1,9 @@
 package com.kapture.ticket.controller;
-
-import com.kapture.ticket.dto.SearchTicketReqDto;
 import com.kapture.ticket.dto.TicketDto;
 import com.kapture.ticket.entity.Ticket;
-import com.kapture.ticket.exceptions.BadRequestException;
-import com.kapture.ticket.exceptions.TicketNotFoundException;
 import com.kapture.ticket.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1/tickets")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TicketController {
+
     private final TicketService ticketService;
 
     @GetMapping("/get-all-tickets")
@@ -31,9 +27,9 @@ public class TicketController {
 
     @GetMapping("/get-ticket-by-id/{id}")
     public ResponseEntity<?> getTicketById(@PathVariable String id) {
+
         return ticketService.getTicketById(id);
     }
-
 
     @PostMapping("/create-ticket/")
     public ResponseEntity<?> createTicket(@RequestBody TicketDto ticketDto) {
@@ -47,15 +43,16 @@ public class TicketController {
 
     @GetMapping("/search")
     public List<Ticket> searchTicketsByCriteria(
-            @RequestParam(required = false) Integer clientId,
-            @RequestParam(required = false) Integer ticketCode,
+            @RequestParam(required = false) String clientId,
+            @RequestParam(required = false) String ticketCode,
             @RequestParam(required = false) String status
     ) {
-        SearchTicketReqDto searchCriteria = new SearchTicketReqDto();
-        searchCriteria.setClientId(clientId);
-        searchCriteria.setTicketCode(ticketCode);
-        searchCriteria.setStatus(status);
-
-        return ticketService.searchTicketsByCriteria(searchCriteria);
+        return ticketService.searchTicketsByCriteria(clientId, ticketCode, status);
     }
+
+    @PostMapping("/create-ticket-with-kafka")
+    public ResponseEntity<?> createTicketWithKafka(@RequestBody TicketDto ticketDto) {
+        return ticketService.createTicketWithKafka(ticketDto);
+    }
+
 }

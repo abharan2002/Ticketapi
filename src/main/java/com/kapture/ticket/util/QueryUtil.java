@@ -2,9 +2,13 @@ package com.kapture.ticket.util;
 
 import com.kapture.ticket.dto.TicketDto;
 import com.kapture.ticket.entity.Ticket;
+import com.kapture.ticket.service.TicketService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +22,7 @@ public class QueryUtil {
 
     @Autowired
     private SessionFactory sessionFactory;
+    private final Logger logger = LoggerFactory.getLogger(TicketService.class);
 
     public  <T> List<T> runQueryHelper(String queryString, Map<String, Object> parametersToSet, Class<T> className, Integer limit, Integer offset) {
         List<T> list = null;
@@ -40,6 +45,28 @@ public class QueryUtil {
         return list;
     }
 
+    public <T> boolean saveOrUpdate(T classObj) {
+        boolean success = false;
+        Session session = null;
+        Transaction tx = null;
+        try {
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            session.saveOrUpdate(classObj);
+            tx.commit();
+            success = true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            logger.error("Exception in saveOrUpdate() {} : {}", classObj.getClass().getSimpleName(), e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return success;
+    }
     public TicketDto executeSaveTicketQuery(TicketDto ticketDto) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
