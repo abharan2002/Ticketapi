@@ -17,32 +17,27 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class DataSourceConfig {
-//
-//    @Value("${spring.datasource.driver-class-name}")
-//    private String driverClassName;
 
-
-    // Fix variable names to camel Case
     @Value("${spring.jpa.properties.hibernate.dialect}")
-    private String HIBERNATE_DIALECT;
+    private String hibernateDialect;
 
     @Value("${spring.datasource.url}")
-    private String DATABASE_URL;
+    private String databaseUrl;
 
     @Value("${spring.datasource.username}")
-    private String DATABASE_USERNAME;
+    private String databaseUsername;
 
     @Value("${spring.datasource.password}")
-    private String DATABASE_PASSWORD;
+    private String databasePassword;
 
 
     @Bean
     public DataSource dataSource() {
         return DataSourceBuilder
                 .create()
-                .url(DATABASE_URL)
-                .username(DATABASE_USERNAME)
-                .password(DATABASE_PASSWORD)
+                .url(databaseUrl)
+                .username(databaseUsername)
+                .password(databasePassword)
                 .build();
     }
 
@@ -64,7 +59,7 @@ public class DataSourceConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", HIBERNATE_DIALECT);
+        properties.put("hibernate.dialect", hibernateDialect);
         return properties;
     }
 }

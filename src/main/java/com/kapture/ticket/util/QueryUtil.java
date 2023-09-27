@@ -45,65 +45,48 @@ public class QueryUtil {
         return list;
     }
 
-    public <T> boolean saveOrUpdate(T classObj) {
-        boolean success = false;
+    public Ticket ticketDtoToTicket(TicketDto ticketDto){
+        Ticket ticket = new Ticket();
+        ticket.setTicketCode(ticketDto.getTicketCode());
+        ticket.setClientId(ticketDto.getClientId());
+        ticket.setTitle(ticketDto.getTitle());
+        ticket.setStatus(ticketDto.getStatus());
+        return ticket;
+    }
+
+    public TicketDto ticketToTicketDto(Ticket ticket){
+        TicketDto ticketDto = new TicketDto();
+        ticketDto.setId(ticket.getId());
+        ticketDto.setTicketCode(ticket.getTicketCode());
+        ticketDto.setClientId(ticket.getClientId());
+        ticketDto.setTitle(ticket.getTitle());
+        ticketDto.setStatus(ticket.getStatus());
+        return ticketDto;
+    }
+    public TicketDto saveOrUpdateTicket(TicketDto ticketDto) {
         Session session = null;
-        Transaction tx = null;
+        Transaction txn = null;
         try {
+            Ticket ticket = ticketDtoToTicket(ticketDto);
             session = sessionFactory.openSession();
-            tx = session.beginTransaction();
-            session.saveOrUpdate(classObj);
-            tx.commit();
-            success = true;
+            txn = session.beginTransaction();
+            session.saveOrUpdate(ticket);
+            txn.commit();
+            ticketDto.setId(ticket.getId());
+            return ticketDto;
         } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
+            if (txn != null) {
+                txn.rollback();
             }
-            logger.error("Exception in saveOrUpdate() {} : {}", classObj.getClass().getSimpleName(), e);
+            logger.error("Error in saveOrUpdateEmployee(): ", e);
+            return null;
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
             }
         }
-        return success;
     }
-    public TicketDto executeSaveTicketQuery(TicketDto ticketDto) {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
 
-            int clientId = ticketDto.getClientId();
-            int ticketCode = ticketDto.getTicketCode();
-            String title = ticketDto.getTitle();
-            String status = ticketDto.getStatus();
-
-            String queryString = "INSERT INTO tickets (client_id, ticket_code, title, status) " +
-                    "VALUES (:clientId, :ticketCode, :title, :status)";
-
-            Map<String, Object> parametersToSet = new HashMap<>();
-            parametersToSet.put("clientId", clientId);
-            parametersToSet.put("ticketCode", ticketCode);
-            parametersToSet.put("title", title);
-            parametersToSet.put("status", status);
-
-            TypedQuery<?> query = session.createNativeQuery(queryString);
-            if (parametersToSet != null && !parametersToSet.isEmpty()) {
-                parametersToSet.forEach(query::setParameter);
-            }
-
-            int rowsAffected = query.executeUpdate();
-
-            session.getTransaction().commit();
-
-            if (rowsAffected > 0) {
-                return ticketDto;
-            } else {
-                return null; // Return null if the insert didn't affect any rows
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     public Ticket executeUpdateQuery(Ticket ticket) {
         try (Session session = sessionFactory.openSession()) {
@@ -130,16 +113,39 @@ public class QueryUtil {
 
             int rowsAffected = query.executeUpdate();
 
-            session.getTransaction().commit(); // Commit the transaction after the query
+            session.getTransaction().commit();
 
             if (rowsAffected > 0) {
                 return ticket;
             } else {
-                return null; // Return null if the update didn't affect any rows
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+    public <T> boolean executeDeleteQuery(T classObj) {
+        boolean success = false;
+        Session session = null;
+        Transaction tx = null;
+        try {
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            session.delete(classObj);
+            tx.commit();
+            success = true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            logger.error("Exception in saveOrUpdate()");
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return success;
+    }
+
 }

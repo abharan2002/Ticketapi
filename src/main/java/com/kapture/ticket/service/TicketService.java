@@ -5,7 +5,9 @@ import com.kapture.ticket.dto.TicketDto;
 import com.kapture.ticket.entity.Ticket;
 import com.kapture.ticket.exceptions.TicketNotFoundException;
 import com.kapture.ticket.repository.TicketRepository;
+import com.kapture.ticket.util.ResponseHandler;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.kapture.ticket.constants.appConstants.TOPIC;
+
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TicketService {
 
     private final TicketRepository ticketRepository;
     private final KafkaTemplate<String, TicketDto> kafkaTemplate;
-    private static final String TOPIC = "TICKET_TOPIC";
+
     private final Logger logger = LoggerFactory.getLogger(TicketService.class);
 
     public ResponseEntity<?> getAllTickets(String clientIdStr, String pageStr, String sizeStr) {
@@ -91,7 +95,7 @@ public class TicketService {
         }
     }
 
-    public ResponseEntity<?> updateTicket(int id, Ticket updatedTicket) {
+    public ResponseEntity<?> updateTicket(int id, TicketDto updatedTicket) {
         try {
             if (updatedTicket.getClientId() < 0 || updatedTicket.getTicketCode() < 0) {
                 logger.error("Client ID and ticket code must be greater than or equal to zero.");
@@ -155,19 +159,39 @@ public class TicketService {
         );
     }
 
+
     public ResponseEntity<?> createTicketWithKafka(TicketDto ticketDto) {
         try {
             if (ticketDto.getClientId() <= 0 || ticketDto.getTicketCode() <= 0) {
                 logger.error("Client ID and ticket code must be greater than zero.");
                 return ResponseEntity.badRequest().body("Client ID and ticket code must be greater than zero.");
             }
-//            TicketDto createdTicket = ticketRepository.createTicket(ticketDto);
             kafkaTemplate.send(TOPIC, ticketDto);
-
             return ResponseEntity.status(HttpStatus.OK).body(ticketDto);
         } catch (Exception e) {
             logger.error("Error creating ticket with Kafka: " + e.getMessage(), e);
             throw new RuntimeException("Error creating ticket with Kafka: " + e.getMessage(), e);
+        }
+    }
+    public ResponseEntity<?> deleteTicket(String id) {
+        try {
+            if (Integer.parseInt(id) > 0) {
+                Ticket ticket = ticketRepository.findTicketById(Integer.parseInt(id)).get(0);
+                if (ticket == null) throw new TicketNotFoundException("Ticket Not Found");
+                if (ticketRepository.deleteTicket(ticket))
+                    return ResponseHandler.generateResponse("Ticket Deleted Successfully", HttpStatus.OK, ticket);
+                else
+                    throw new RuntimeException();
+            } else {
+                return ResponseHandler.generateResponse("Enter Valid,ID", HttpStatus.BAD_REQUEST);
+            }
+        } catch (ResourceNotFoundException e) {
+            String message = e.getMessage();
+            return ResponseHandler.generateResponse(message, HttpStatus.NOT_FOUND);
+        } catch (NumberFormatException e) {
+            return ResponseHandler.generateResponse("Enter valid parameter", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse("Failed to Delete the Ticket", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

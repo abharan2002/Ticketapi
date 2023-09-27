@@ -15,21 +15,19 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-
-    // change into int
     private int id;
 
-    @Column(name = "client_id", nullable = false)
+    @Column(name = "client_id")
     private int clientId;
 
-    @Column(name = "ticket_code", nullable = false, unique = true)
+    @Column(name = "ticket_code")
     private int ticketCode;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     private String title;
 
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 }
 

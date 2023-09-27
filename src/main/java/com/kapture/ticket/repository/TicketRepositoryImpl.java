@@ -1,23 +1,13 @@
 package com.kapture.ticket.repository;
 
-import com.kapture.ticket.dto.SearchTicketReqDto;
 import com.kapture.ticket.dto.TicketDto;
 import com.kapture.ticket.entity.Ticket;
 import com.kapture.ticket.util.QueryUtil;
-import com.kapture.ticket.configuration.DataSourceConfig;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +43,7 @@ public class TicketRepositoryImpl implements TicketRepository {
     }
 
     public TicketDto createTicket(TicketDto ticketDto) {
-        return queryUtil.executeSaveTicketQuery(ticketDto);
+        return queryUtil.saveOrUpdateTicket(ticketDto);
     }
 
     public Ticket updateTicket(Ticket ticket) {
@@ -92,4 +82,11 @@ public class TicketRepositoryImpl implements TicketRepository {
     }
 
 
-        }
+    @Override
+    public boolean deleteTicket(Ticket ticket) {
+        return queryUtil.executeDeleteQuery(ticket);
+    }
+
+
+
+}

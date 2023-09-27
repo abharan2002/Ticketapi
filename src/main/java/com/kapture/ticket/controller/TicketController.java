@@ -25,23 +25,12 @@ public class TicketController {
         return ticketService.getAllTickets(clientId, page, size);
     }
 
-    @GetMapping("/get-ticket-by-id/{id}")
+    @GetMapping("get-ticket-by-id/{id}")
     public ResponseEntity<?> getTicketById(@PathVariable String id) {
 
         return ticketService.getTicketById(id);
     }
-
-    @PostMapping("/create-ticket/")
-    public ResponseEntity<?> createTicket(@RequestBody TicketDto ticketDto) {
-        return ticketService.createTicket(ticketDto);
-    }
-
-    @PutMapping("/update-ticket/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable int id, @RequestBody Ticket updatedTicket) {
-        return ticketService.updateTicket(id, updatedTicket);
-    }
-
-    @GetMapping("/search")
+    @GetMapping("search")
     public List<Ticket> searchTicketsByCriteria(
             @RequestParam(required = false) String clientId,
             @RequestParam(required = false) String ticketCode,
@@ -50,9 +39,24 @@ public class TicketController {
         return ticketService.searchTicketsByCriteria(clientId, ticketCode, status);
     }
 
-    @PostMapping("/create-ticket-with-kafka")
+
+    @PutMapping("/update-ticket/{id}")
+    public ResponseEntity<?> updateTicket(@PathVariable int id, @RequestBody TicketDto updatedTicket) {
+        return ticketService.updateTicket(id, updatedTicket);
+    }
+
+    @PostMapping("/create-ticket")
+    public ResponseEntity<?> createTicket(@RequestBody TicketDto ticketDto) {
+        return ticketService.createTicket(ticketDto);
+    }
+
+    @PostMapping("create-ticket-with-kafka")
     public ResponseEntity<?> createTicketWithKafka(@RequestBody TicketDto ticketDto) {
         return ticketService.createTicketWithKafka(ticketDto);
+    }
+    @DeleteMapping("/delete-ticket-by-id/{id}")
+    public ResponseEntity<?> deleteTicket(@PathVariable String id) {
+        return ticketService.deleteTicket(id);
     }
 
 }

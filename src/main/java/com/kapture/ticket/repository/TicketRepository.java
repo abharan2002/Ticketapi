@@ -1,10 +1,8 @@
 package com.kapture.ticket.repository;
 
-import com.kapture.ticket.dto.SearchTicketReqDto;
 import com.kapture.ticket.dto.TicketDto;
 import com.kapture.ticket.entity.Ticket;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.List;
 
@@ -17,5 +15,6 @@ public interface TicketRepository {
     Ticket updateTicket(Ticket ticket);
     List<Ticket> searchTicketsByCriteria(Integer clientId, Integer ticketCode, String status);
 
+    boolean deleteTicket(Ticket ticket);
 
 }
