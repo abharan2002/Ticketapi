@@ -121,7 +121,7 @@ public class QueryUtil {
                 return null;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error in Updating Ticket");
             return null;
         }
     }

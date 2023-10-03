@@ -87,6 +87,4 @@ public class TicketRepositoryImpl implements TicketRepository {
         return queryUtil.executeDeleteQuery(ticket);
     }
 
-
-
 }
